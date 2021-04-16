@@ -22,4 +22,5 @@ version-resolver:
   default: minor
 template: |
   ## Changes
+  
   $CHANGES
