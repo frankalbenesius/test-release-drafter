@@ -16,6 +16,9 @@ version-resolver:
   minor:
     labels:
       - 'minor'
+  patch:
+    labels:
+      - 'patch
   default: minor
 template: |
   ## Changes
