@@ -3,18 +3,16 @@ tag-template: 'v$RESOLVED_VERSION'
 autolabeler:
   - label: 'bug'
     branch:
-      - '/fix-/i'
+      - '/fix/i'
     title:
       - '/fix/i'
-  - label: 'feature'
+  - label: 'jira'
     branch:
       - '/aa-[0-9]{1,4}/i'
     title:
       - '/aa-[0-9]{1,4}/i'
-    body:
-      - '/aa-[0-9]{1,4}/i'
 categories:
-  - title: '🚀 Features'
+  - title: '🚀 Jira'
     labels:
       - 'feature'
       - 'enhancement'
