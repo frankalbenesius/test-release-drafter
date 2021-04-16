@@ -1,5 +1,18 @@
 name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
+autolabeler:
+  - label: 'bug'
+    branch:
+      - '/fix-/i'
+    title:
+      - '/fix/i'
+  - label: 'feature'
+    branch:
+      - '/aa-[0-9]{1,4}/i'
+    title:
+      - '/aa-[0-9]{1,4}/i'
+    body:
+      - '/aa-[0-9]{1,4}/i'
 categories:
   - title: '🚀 Features'
     labels:
