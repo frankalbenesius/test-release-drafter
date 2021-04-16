@@ -14,8 +14,7 @@ autolabeler:
 categories:
   - title: '🚀 Jira'
     labels:
-      - 'feature'
-      - 'enhancement'
+      - 'jira'
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
