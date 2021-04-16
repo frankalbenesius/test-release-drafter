@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: POST to Build Hook
-        run: curl -X POST -d {} ${{secrets.NETLIFY_BUILD_HOOK}}?trigger_title=This+Test
+        run: curl -X POST -d {} ${{secrets.NETLIFY_BUILD_HOOK}}?trigger_branch=main&trigger_title=Release+${{env.GITHUB_REF}}
