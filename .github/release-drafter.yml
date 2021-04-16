@@ -9,6 +9,7 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
+version-template: "$MAJOR.$MINOR"
 version-resolver:
   major:
     labels:
@@ -16,9 +17,6 @@ version-resolver:
   minor:
     labels:
       - 'minor'
-  patch:
-    labels:
-      - 'patch'
   default: minor
 template: |
   ## Changes
