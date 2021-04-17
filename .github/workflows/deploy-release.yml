@@ -45,7 +45,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
         with:
-          args: deploy --dir=build --prod --message=\"${{github.run_id}} ${{github.ref}}\"
+          args: deploy --dir=build --prod --message=\"\#${{github.run_number}} ${{github.ref}}\"
       - name: send slack notification
         env:
           STAGING_URL: https://test-release-drafter-staging.netlify.app/
