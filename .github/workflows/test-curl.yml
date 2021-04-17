@@ -1,0 +1,17 @@
+name: Deploy Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send slack notification
+        env:
+          STAGING_URL: https://test-release-drafter-staging.netlify.app/
+          GITHUB_WORKFLOW_URL: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+        run: |
+          curl -s -X POST '${{secrets.SLACK_WEBHOOK_URL}}' \
+            -d '{"blocks":[{"type":"header","text":{"type":"plain_text","text":"Release v1.6 Needs Approval","emoji":true}},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"View on Staging","emoji":true},"url":"${{env.STAGING_URL}}"},{"type":"button","text":{"type":"plain_text","text":"Review on Github","emoji":true},"url":"${{env.GITHUB_WORKFLOW_URL}}"}]}]}'
+ 
