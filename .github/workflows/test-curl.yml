@@ -1,4 +1,4 @@
-name: Deploy Release
+name: test curl
 
 on:
   workflow_dispatch:
