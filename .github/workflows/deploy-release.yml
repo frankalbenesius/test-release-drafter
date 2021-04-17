@@ -1,4 +1,4 @@
-name: Release Deployments
+name: Deploy Release
 
 on:
   release:
@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build_and_test:
     name: Build & Test
     runs-on: ubuntu-latest
@@ -13,6 +14,8 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v2
       - name: npm install, build, and test
+        env:
+          REACT_APP_HELLO: ${{secrets.REACT_APP_HELLO}}
         run: |
           npm install
           npm run build --if-present
@@ -22,6 +25,7 @@ jobs:
         with:
           name: build
           path: build
+
   deploy_to_staging:
     name: Deploy To Staging
     needs: build_and_test
@@ -43,6 +47,7 @@ jobs:
         with:
           args: deploy --dir=build --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_STAGING_SITE_ID"]'
+          
   deploy_to_production:
     name: Deploy To Production
     needs: deploy_to_staging
