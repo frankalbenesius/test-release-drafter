@@ -10,7 +10,7 @@ jobs:
       - name: send slack notification
         env:
           STAGING_URL: https://test-release-drafter-staging.netlify.app/
-          GITHUB_WORKFLOW_URL: https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}
+          GITHUB_WORKFLOW_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
         run: |
           curl -s -X POST '${{secrets.SLACK_WEBHOOK_URL}}' \
             -d '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"*Release v1.6 Needs Approval*\n<${{env.STAGING_URL}}|View on Staging>  →  <${{env.GITHUB_WORKFLOW_URL}}|View on Github>"}}]}'
