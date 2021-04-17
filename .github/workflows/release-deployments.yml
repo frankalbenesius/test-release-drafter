@@ -46,7 +46,7 @@ jobs:
     name: Deploy To Production
     needs: deploy_to_staging
     environment:
-      name: staging
+      name: production
       url: https://test-release-drafter-production.netlify.app/
     runs-on: ubuntu-latest
     steps:
