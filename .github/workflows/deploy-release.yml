@@ -72,5 +72,5 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         with:
-          args: deploy --dir=build --prod --message=\"${{github.run_id}} ${{github.ref}}\"
+          args: deploy --dir=build --prod --message=\"\#${{github.run_number}} ${{github.ref}}\"
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_PRODUCTION_SITE_ID"]'
