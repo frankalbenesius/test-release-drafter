@@ -22,7 +22,7 @@ jobs:
         with:
           name: build
           path: build
-  deploy_staging:
+  deploy_to_staging:
     name: Deploy To Staging
     needs: build_and_test
     environment:
@@ -42,9 +42,9 @@ jobs:
         with:
           args: deploy --dir=build --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_STAGING_SITE_ID"]'
-  deploy_production:
+  deploy_to_production:
     name: Deploy To Production
-    needs: build_and_test
+    needs: deploy_to_staging
     environment:
       name: staging
       url: https://test-release-drafter-production.netlify.app/
