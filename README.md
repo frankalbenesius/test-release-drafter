@@ -1,4 +1,3 @@
 # test-release-drafter
 
-this right here
-test
+this is a playground where i'm testing github actions & stuff
