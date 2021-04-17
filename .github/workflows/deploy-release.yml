@@ -13,11 +13,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      - name: cache node modules
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
       - name: npm install, build, and test
         env:
           REACT_APP_HELLO: ${{secrets.REACT_APP_HELLO}}
@@ -57,7 +52,7 @@ jobs:
           GITHUB_WORKFLOW_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
         run: |
           curl -s -X POST '${{secrets.SLACK_WEBHOOK_URL}}' \
-            -d '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"*Production Deployment Needs Approval (${{github.ref}})*\n<${{env.STAGING_URL}}|View on Staging>  →  <${{env.GITHUB_WORKFLOW_URL}}|View on Github>"}}]}'
+            -d '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"*Production Deployment Needs Approval*\n<${{env.STAGING_URL}}|View on Staging>  →  <${{env.GITHUB_WORKFLOW_URL}}|View on Github>"}},{"type":"context","elements":[{"type":"plain_text","text":"${{github.repository}}  ${{github.ref}}","emoji":true}]}]}'
    
   deploy_to_production:
     name: Deploy To Production
