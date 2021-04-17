@@ -1,9 +1,9 @@
 function App() {
-  const date = new Date();
-  const time = `${date.toTimeString()}`;
   return (
     <div>
-      this is react {time}!<p>okokok</p>
+      <h1>this is reacT</h1>
+      <p>okokok</p>
+      <p>Hello: {process.env.REACT_APP_HELLO}</p>
     </div>
   );
 }
