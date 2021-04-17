@@ -1,8 +1,7 @@
 function App() {
   return (
     <div>
-      <h1>this is reacT</h1>
-      <p>okokok</p>
+      <h1>this is react</h1>
       <p>Hello: {process.env.REACT_APP_HELLO}</p>
     </div>
   );
