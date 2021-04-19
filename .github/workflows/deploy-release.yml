@@ -7,8 +7,11 @@ on:
 
 jobs:
 
-  build_and_test:
-    name: Build & Test
+  deploy_to_staging:
+    name: Deploy To Staging
+    environment:
+      name: staging
+      url: https://test-release-drafter-staging.netlify.app/
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -20,25 +23,6 @@ jobs:
           npm ci
           npm run build --if-present
           npm test
-      - name: upload build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build
-
-  deploy_to_staging:
-    name: Deploy To Staging
-    needs: build_and_test
-    environment:
-      name: staging
-      url: https://test-release-drafter-staging.netlify.app/
-    runs-on: ubuntu-latest
-    steps:
-      - name: download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
       - name: deploy to netlify
         uses: netlify/actions/cli@master
         env:
@@ -62,11 +46,15 @@ jobs:
       url: https://test-release-drafter-production.netlify.app/
     runs-on: ubuntu-latest
     steps:
-      - name: download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: npm install, build, and test
+        env:
+          REACT_APP_HELLO: ${{secrets.REACT_APP_HELLO}}
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
       - name: deploy to netlify
         uses: netlify/actions/cli@master
         env:
